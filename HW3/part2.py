@@ -51,7 +51,7 @@ def warp_triangle(src, dst, t_src, t_dst):
     t2r = np.float32([[t_dst[i,0]-r2[0], t_dst[i,1]-r2[1]] for i in range(3)])
     # 產生一個mask，三角形區域是1，其餘是0
     mask = np.zeros((r2[3], r2[2]), np.float32)
-    # LINE_AA讓三角形的邊界落在pixel中間的時候 會是一個中間值 不會是0或1
+    # LINE_AA讓三角形的邊界落在pixel中間的時候 會是一個中間值 不會是0或1 不會看起來很突兀
     cv2.fillConvexPoly(mask, np.int32(t2r), 1.0, lineType=cv2.LINE_AA)
     # r1[0]是x, r1[1]是y, r1[2]是w, r1[3]是h
     # 從輸入的圖片src_roi中取出該三角形外接矩形區域的部分
