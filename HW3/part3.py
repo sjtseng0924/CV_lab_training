@@ -78,8 +78,8 @@ if __name__ == "__main__":
     for i, t in enumerate(np.linspace(0, 1, num_frames)):
         frame = morph(
             im1, im2, im1_pts, im2_pts, tri_simplices,
-            warp_frac=t,           # 混和兩張圖片的點的比例值
-            dissolve_frac=t,       # 顏色比例值
+            warp_frac=t, # 混和兩張圖片的點的比例值
+            dissolve_frac=t, # 顏色比例值
         )
         # imageio要uint8
         frames.append((frame*255).astype(np.uint8))

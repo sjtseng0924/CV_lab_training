@@ -39,6 +39,7 @@ def warp_triangle(src, dst, t_src, t_dst):
     # 接近共線的三角形面積會很接近0
     if abs(signed_area(t_dst)) < 1e-3: return
     # boundingRect 取得包住該三個頂點三角形的外接矩形 (x,y,w,h)
+    # r1是來源三角形的外接矩形 r2是目標三角形的外接矩形 
     # 就是找三角形三個座標中的min max的x y值再相減而已
     # x y是左上角座標，w h是寬高
     # 只處理小區塊，可以把三角形的座標改成相對於外接矩形左上角的座標，比較不會有大數字
@@ -83,7 +84,7 @@ def warp_image(img, src_pts, dst_pts, simp):
 
 warpA = warp_image(A, ptsA, avg, simp)
 warpB = warp_image(B, ptsB, avg, simp)
-# 找有標記的點的位置的凸包，會拿到是凸包上的點的index
+# 找有標記的點的位置的凸包，會拿到是凸包上的點的index，獲得所有標記點的範圍
 hull_idx = cv2.convexHull(avg.astype(np.float32), returnPoints=False).flatten()
 # 找凸包每個點的座標
 hull = avg[hull_idx].astype(np.int32)

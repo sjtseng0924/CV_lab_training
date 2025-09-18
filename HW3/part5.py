@@ -122,6 +122,9 @@ def main():
     my_pts = add_corners(read_pts(os.path.join(all_pts_dir, "1a.pts")), W, H)
 
     # 用不同的alpha值
+    # alpha=1時是原本的臉
+    # alpha>1時是增加自己跟平均臉的差距，變得更凸顯自己的特徵
+    # alpha在0~1之間時是往mean face縮，更接近mean face
     alphas = [-1, 0.5, 1, 1.5, 2.0]  
     for a in alphas:
         caric_pts = mean_pts + a*(my_pts - mean_pts)  
